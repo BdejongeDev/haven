@@ -28,10 +28,10 @@ svg { display: block; }
 #stage { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: center; overflow: hidden; }
 
 /* Wallpaper */
-.wp, .rwp { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s ease; }
+.wp, .rwp { position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0; transition: opacity 1.6s ease; }
 .wp.on, .rwp.on { opacity: 1; }
 .wp svg, .rwp svg { width: 100%; height: 100%; }
-.scrim { position: absolute; inset: 0; pointer-events: none;
+.scrim { position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none;
   background: linear-gradient(180deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.08) 38%, rgba(0,0,0,.05) 62%, rgba(0,0,0,.42) 100%); }
 
 /* Glass */
@@ -44,7 +44,7 @@ svg { display: block; }
 }
 
 /* Views */
-.view { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility 0s linear .45s; }
+.view { position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility 0s linear .45s; }
 .view.on { opacity: 1; visibility: visible; transition: opacity .45s ease; }
 
 /* Clock styles */
@@ -65,9 +65,11 @@ svg { display: block; }
 .date { font-weight: 500; }
 .date { font-size: 38px; font-weight: 400; margin-top: 10px; color: var(--text); }
 
-.actions { position: absolute; right: 116px; top: 86px; display: flex; gap: 18px; }
-.act { height: 78px; padding: 0 30px 0 24px; border-radius: 39px; display: flex; align-items: center; gap: 14px; font-size: 27px; font-weight: 500; cursor: pointer;
+.actions { position: absolute; right: 116px; top: 86px; display: flex; }
+.actions > * + * { margin-left: 18px; }
+.act { height: 78px; padding: 0 30px 0 24px; border-radius: 39px; display: flex; align-items: center; font-size: 27px; font-weight: 500; cursor: pointer;
   transition: transform .3s var(--ease), background .25s ease, color .25s ease; }
+.act > * + * { margin-left: 14px; }
 .act svg { width: 34px; height: 34px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .act.focus { background: rgba(255,255,255,.94); color: #111; transform: scale(1.07); border-color: transparent; }
 .act.running { background: rgba(255,170,60,.32); }
@@ -77,7 +79,8 @@ svg { display: block; }
 .weather { position: absolute; right: 116px; top: 200px; width: 560px; border-radius: 38px; padding: 34px 38px 30px; }
 .weather.hidden { display: none; }
 .wx-head { display: flex; justify-content: space-between; align-items: center; font-size: 26px; color: var(--muted); font-weight: 500; }
-.wx-now { display: flex; align-items: center; gap: 26px; margin-top: 14px; }
+.wx-now { display: flex; align-items: center; margin-top: 14px; }
+.wx-now > * + * { margin-left: 26px; }
 .wx-now svg { width: 104px; height: 104px; }
 .wx-t { font-size: 96px; font-weight: 200; line-height: 1; letter-spacing: -3px; }
 .wx-d { font-size: 28px; margin-top: 6px; color: var(--text); }
@@ -95,7 +98,8 @@ svg { display: block; }
 .wxi .bolt { stroke: #ffd36b; }
 
 /* Dock */
-.dock { position: absolute; left: 50%; bottom: 84px; transform: translateX(-50%); display: flex; gap: 30px; padding: 26px 32px; border-radius: 58px; }
+.dock { position: absolute; left: 50%; bottom: 84px; transform: translateX(-50%); display: flex; padding: 26px 32px; border-radius: 58px; }
+.dock > * + * { margin-left: 30px; }
 .slot { position: relative; cursor: pointer; }
 .slot .ic { width: 132px; height: 132px; }
 .slot .name { position: absolute; left: -60px; right: -60px; top: -76px; text-align: center; font-size: 26px; font-weight: 600; opacity: 0; transform: translateY(10px);
@@ -106,7 +110,7 @@ svg { display: block; }
 /* App icon */
 .ic { position: relative; border-radius: 30%; overflow: hidden; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 10px 26px rgba(0,0,0,.3); transition: transform .35s var(--ease), box-shadow .35s ease; }
-.ic::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+.ic::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; border-radius: inherit; pointer-events: none;
   background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 45%); box-shadow: inset 0 1px 0 rgba(255,255,255,.3); }
 .ic img { display: block; object-fit: contain; }
 .ic img.full { width: 100%; height: 100%; object-fit: cover; }
@@ -125,7 +129,8 @@ svg { display: block; }
 .chip.active { background: #ffd36b; color: #111; }
 .scroller { position: absolute; left: 0; right: 0; top: 250px; bottom: 0; overflow: hidden; padding: 30px 116px 80px; }
 
-.grid { display: flex; flex-wrap: wrap; gap: 54px 52px; padding-top: 10px; }
+.grid { display: flex; flex-wrap: wrap; padding-top: 10px; margin-right: -52px; }
+.grid > * { margin: 0 52px 54px 0; }
 .tile { width: 192px; text-align: center; cursor: pointer; position: relative; }
 .tile .ic { width: 168px; height: 168px; margin: 0 auto; }
 .tile .ict { font-size: 32px; }
@@ -138,26 +143,30 @@ svg { display: block; }
 .editing .tile:not(.fav) .ic { opacity: .55; }
 .editing .tile.focus .ic { opacity: 1; }
 
-.list { width: 1240px; display: flex; flex-direction: column; gap: 16px; }
+.list { width: 1240px; display: flex; flex-direction: column; }
+.list > * + * { margin-top: 16px; }
 .row { display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 100px; border-radius: 30px; background: rgba(255,255,255,.08);
   font-size: 30px; cursor: pointer; transition: background .25s ease, color .25s ease, transform .3s var(--ease); }
-.row .val { display: flex; align-items: center; gap: 18px; color: var(--muted); }
+.row .val { display: flex; align-items: center; color: var(--muted); }
+.row .val .arr:first-child { margin-right: 18px; }
+.row .val .arr:last-child { margin-left: 18px; }
 .row .arr { opacity: .5; font-size: 30px; }
 .row.focus { background: rgba(255,255,255,.94); color: #111; transform: scale(1.02); }
 .row.focus .val { color: #333; }
 .row .fontval { font-size: 40px; line-height: 1; }
 
 /* Timer */
-.sheet, .alarm { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden;
+.sheet, .alarm { position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden;
   transition: opacity .35s ease, visibility 0s linear .35s; background: rgba(0,0,0,.35); }
 .sheet.on, .alarm.on { opacity: 1; visibility: visible; transition: opacity .35s ease; }
 .sheetbox { width: 980px; border-radius: 48px; padding: 56px 60px 60px; }
 .sheetbox h3 { font-size: 52px; font-weight: 600; letter-spacing: -1px; margin-bottom: 34px; }
-.tgrid { display: flex; flex-wrap: wrap; gap: 22px; }
+.tgrid { display: flex; flex-wrap: wrap; margin: 0 -22px -22px 0; }
+.tgrid > * { margin: 0 22px 22px 0; }
 .tbtn { width: 270px; height: 110px; border-radius: 30px; background: rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center;
   font-size: 34px; font-weight: 500; cursor: pointer; transition: background .25s ease, color .25s ease, transform .3s var(--ease); }
 .tbtn small { font-size: 24px; color: var(--muted); margin-left: 8px; font-weight: 400; }
-.tbtn.stop { width: 100%; background: rgba(255,90,90,.25); }
+.tbtn.stop { width: calc(100% - 22px); background: rgba(255,90,90,.25); }
 .tbtn.focus { background: rgba(255,255,255,.95); color: #111; transform: scale(1.05); }
 .tbtn.focus small { color: #555; }
 
@@ -169,13 +178,13 @@ svg { display: block; }
 @keyframes shake { 0%,100% { transform: rotate(0); } 20% { transform: rotate(-10deg); } 40% { transform: rotate(10deg); } 60% { transform: rotate(-6deg); } 80% { transform: rotate(4deg); } }
 
 /* Screen saver */
-.rest { position: absolute; inset: 0; background: #000; opacity: 0; visibility: hidden; transition: opacity 1.4s ease, visibility 0s linear 1.4s; }
+.rest { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #000; opacity: 0; visibility: hidden; transition: opacity 1.4s ease, visibility 0s linear 1.4s; }
 .rest.on { opacity: 1; visibility: visible; transition: opacity 1.4s ease; }
 .rwp.kb { animation: kenburns 50s linear forwards; }
 .rwp.kb2 { animation: kenburns2 50s linear forwards; }
 @keyframes kenburns { from { transform: scale(1.02) translate(0,0); } to { transform: scale(1.16) translate(-2.5%, -1.5%); } }
 @keyframes kenburns2 { from { transform: scale(1.16) translate(2%, -1%); } to { transform: scale(1.03) translate(0,0); } }
-.rscrim { position: absolute; inset: 0; background: linear-gradient(200deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.55) 100%); }
+.rscrim { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: linear-gradient(200deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.55) 100%); }
 .restinfo { position: absolute; left: 130px; bottom: 110px; text-shadow: 0 4px 40px rgba(0,0,0,.35); transition: opacity 1.2s ease; }
 .rclock { font-size: 300px; line-height: .9; font-variant-numeric: tabular-nums; }
 .font-classic .rclock { font-size: 340px; line-height: .8; }
@@ -197,7 +206,7 @@ svg { display: block; }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
 /* ---------- Startup animation ---------- */
-.intro { position: absolute; inset: 0; z-index: 100; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center;
+.intro { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 100; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center;
   transition: opacity 1s ease, transform 1.4s var(--ease), visibility 0s linear 1.4s; }
 .intro.done { opacity: 0; transform: scale(1.08); visibility: hidden; pointer-events: none; }
 .intro-glow { position: absolute; width: 1100px; height: 700px; border-radius: 50%; filter: blur(120px); opacity: 0;
@@ -241,3 +250,10 @@ svg { display: block; }
 @keyframes slideIn { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: none; } }
 @keyframes dockIn { from { opacity: 0; transform: translate(-50%, 120px) scale(.92); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Older TVs (before about 2021) have no blur: make the glass darker so text stays readable */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root { --glass: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04)), rgba(14,18,30,.62); }
+  .panel { background: rgba(8,10,18,.88); }
+  .alarm { background: rgba(8,10,18,.9); }
+}

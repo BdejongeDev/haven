@@ -32,6 +32,7 @@ Haven is **just an app**. It does not replace or change anything on your TV. Ope
 - **Kitchen timer** from 1 minute to 1 hour, with a chime when time is up
 - **Startup animation and sound** (the sound can be turned off)
 - **Works with the normal TV remote**: arrows, OK and Back
+- **Works on older TVs too** (tested on a 2019 Samsung Q70R), with a **Screen Size** setting if your TV cuts off the edges
 - **No tracking, no ads, no accounts.** The only network request is the weather.
 
 <table>
@@ -135,6 +136,7 @@ tizen install -n Haven.wgt -t <device-name>
 - **The TV doesn't show up in Device Manager:** check that Developer Mode has your computer's IP, restart the TV, and make sure both are on the same network.
 - **"Install failed" or a certificate error:** the certificate must be a **Samsung** certificate that includes your TV's DUID. Recreate it while the TV is connected.
 - **An app won't open from Haven:** some built-in Samsung apps can't be launched by other apps. Open them from the Samsung menu instead.
+- **The edges of the screen are cut off:** open **Settings → Screen Size** and press Left until everything fits (usually around 95%).
 - **No weather:** the TV needs internet access, and a city must be selected in Settings.
 
 ## Using Haven

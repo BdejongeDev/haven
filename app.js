@@ -12,7 +12,7 @@
   };
 
   /* ---------- Settings ---------- */
-  var DEFAULTS = { wallpaper: "auto", clockFont: "apple", hour12: false, greeting: true, units: "c", restStyle: "scenery", restAfter: 5, city: "Amsterdam", bootSound: true };
+  var DEFAULTS = { wallpaper: "auto", clockFont: "apple", hour12: false, greeting: true, units: "c", restStyle: "scenery", restAfter: 5, city: "Amsterdam", bootSound: true, screenSize: 100 };
   var cfg = merge(DEFAULTS, store.get("cfg", {}));
   function merge(a, b) { var o = {}, k; for (k in a) o[k] = a[k]; for (k in b) if (k in a) o[k] = b[k]; return o; }
 
@@ -207,6 +207,7 @@
   function cityOptions() { var o = Object.keys(CITIES).map(function (c) { return [c, c]; }); o.push(["", "Off"]); return o; }
   var WP_OPTIONS = [["auto", "Follows time of day"]].concat(Wallpapers.list.map(function (id) { return [id, Wallpapers.scenes[id].name]; }));
   var SETTINGS = [
+    { key: "screenSize", label: "Screen Size", options: [[85, "85%"], [88, "88%"], [90, "90%"], [92, "92%"], [94, "94%"], [96, "96%"], [98, "98%"], [100, "100%"]] },
     { key: "wallpaper", label: "Wallpaper", options: WP_OPTIONS },
     { key: "clockFont", label: "Clock Style", options: [["apple", "Bold"], ["modern", "Thin"], ["classic", "Classic"], ["rounded", "Rounded"]], font: true },
     { key: "hour12", label: "Time Format", options: [[false, "24-hour"], [true, "12-hour"]] },
@@ -263,6 +264,7 @@
     document.body.className = "font-" + cfg.clockFont + (booting ? " booting" : "");
     $("greet").classList.toggle("hidden", !cfg.greeting);
     applyWallpaper();
+    fit();
     resetIdle();
     if (refetchWeather) fetchWeather();
   }
@@ -673,10 +675,12 @@
 
   /* ---------- Scale to the screen ---------- */
   function fit() {
-    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    // Screen Size shrinks the picture a little for TVs that cut off the edges
+    var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080) * ((cfg.screenSize || 100) / 100);
     $("stage").style.transform = "translate(-50%,-50%) scale(" + s + ")";
   }
   window.addEventListener("resize", fit);
+  window.addEventListener("load", fit);
 
   /* ---------- Start ---------- */
   fit();
