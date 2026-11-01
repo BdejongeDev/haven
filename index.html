@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haven</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="font-apple booting">
+<div id="stage">
+  <!-- Wallpaper (two layers so they can cross-fade) -->
+  <div class="wp on" id="wpA"></div>
+  <div class="wp" id="wpB"></div>
+  <div class="scrim"></div>
+
+  <!-- Home screen -->
+  <section class="view home on" id="home">
+    <div class="clockbox">
+      <div class="greet" id="greet"></div>
+      <div class="bigclock clockfont" id="bigclock"></div>
+      <div class="date" id="date"></div>
+    </div>
+
+    <div class="actions">
+      <div class="act glass f" id="actTimer" data-act="timer">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 2M9.5 3h5M12 3v3"/></svg>
+        <span id="timerLabel">Timer</span>
+      </div>
+      <div class="act glass f" data-act="rest">
+        <svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <span>Screen Saver</span>
+      </div>
+      <div class="act glass f" data-act="settings">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></svg>
+        <span>Settings</span>
+      </div>
+    </div>
+
+    <div class="weather glass" id="weather"></div>
+
+    <div class="dock glass" id="dock"></div>
+  </section>
+
+  <!-- All apps -->
+  <section class="view panel" id="apps">
+    <header>
+      <h2 id="appsTitle">All Apps</h2>
+      <div class="chip glass f" data-act="edit" id="editBtn">Edit Favorites</div>
+    </header>
+    <p class="hint" id="appsHint">Select an app and press OK to open it.</p>
+    <div class="scroller" id="appsScroll"><div class="grid" id="grid"></div></div>
+  </section>
+
+  <!-- Settings -->
+  <section class="view panel" id="settings">
+    <header><h2>Settings</h2></header>
+    <p class="hint">Press OK or left/right to change a setting. Press Back to close.</p>
+    <div class="scroller" id="setScroll"><div class="list" id="setlist"></div></div>
+  </section>
+
+  <!-- Timer picker -->
+  <div class="sheet" id="timerSheet">
+    <div class="sheetbox glass">
+      <h3>Timer</h3>
+      <div class="tgrid" id="tgrid"></div>
+    </div>
+  </div>
+
+  <!-- Timer finished -->
+  <div class="alarm" id="alarm">
+    <div class="alarmbox">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 2M9.5 3h5M12 3v3"/></svg>
+      <h3>Time's Up</h3>
+      <p>Press any button to stop</p>
+    </div>
+  </div>
+
+  <!-- Screen saver -->
+  <div class="rest" id="rest">
+    <div class="rwp" id="rA"></div>
+    <div class="rwp" id="rB"></div>
+    <div class="rscrim"></div>
+    <div class="restinfo" id="restInfo">
+      <div class="rclock clockfont" id="rclock"></div>
+      <div class="rdate" id="rdate"></div>
+      <div class="rmeta" id="rmeta"></div>
+    </div>
+  </div>
+
+  <div class="toast glass" id="toast"></div>
+
+  <!-- Startup animation -->
+  <div class="intro" id="intro">
+    <div class="intro-glow"></div>
+    <div class="intro-mark">
+      <svg viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="hvBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#081a36"/><stop offset=".6" stop-color="#0f3b70"/><stop offset="1" stop-color="#1a6aa3"/>
+          </linearGradient>
+          <linearGradient id="hvSun" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffeaa8"/><stop offset=".5" stop-color="#ffc145"/><stop offset="1" stop-color="#ff8f1f"/>
+          </linearGradient>
+          <linearGradient id="hvShine" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="hvBlur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+          <clipPath id="hvSky"><rect x="0" y="0" width="200" height="116"/></clipPath>
+          <clipPath id="hvSq"><rect x="10" y="10" width="180" height="180" rx="54"/></clipPath>
+        </defs>
+        <rect x="10" y="10" width="180" height="180" rx="54" fill="url(#hvBg)"/>
+        <g clip-path="url(#hvSq)">
+          <circle class="hv-glow" cx="100" cy="116" r="62" fill="#ffb347" filter="url(#hvBlur)"/>
+          <g clip-path="url(#hvSky)"><circle class="hv-sun" cx="100" cy="116" r="42" fill="url(#hvSun)"/></g>
+          <rect x="10" y="10" width="180" height="180" fill="url(#hvShine)"/>
+        </g>
+        <line class="hv-line hv-l0" x1="38" y1="116" x2="162" y2="116" stroke="#fff"/>
+        <line class="hv-line hv-l1" x1="62" y1="136" x2="138" y2="136" stroke="#ffcf73"/>
+        <line class="hv-line hv-l2" x1="80" y1="154" x2="120" y2="154" stroke="#ffa53d"/>
+      </svg>
+      <div class="mark-sweep"></div>
+    </div>
+    <div class="intro-name">Haven</div>
+  </div>
+</div>
+
+<script src="wallpapers.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

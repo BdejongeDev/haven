@@ -1,0 +1,8 @@
+.DS_Store
+Thumbs.db
+*.wgt
+.buildResult/
+.sign/
+.settings/
+.project
+.tproject
